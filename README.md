@@ -1,11 +1,14 @@
 Search With Google
 ==============
 
-## install
+## Install
 
 	npm install gogl -g
 
 
-### usage
+## Usage
 
 	gogl someting
+
+
+> If this tool can not used normally, Please open an issue to let me know!
