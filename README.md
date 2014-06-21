@@ -1,4 +1,11 @@
 Search With Google
 ==============
 
-_(Building)_
+## install
+
+	npm install gogl -g
+
+
+### usage
+
+	gogl someting

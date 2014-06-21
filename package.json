@@ -1,0 +1,24 @@
+{
+  "author": "light",
+  "name": "gogl",
+  "description": "search with google in command line",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/opensourcelover/gogl.git"
+  },
+  "main": "index.js",
+  "keywords": [
+    "search",
+    "google"
+  ],
+  "bin": {
+    "gogl": "./bin/gogl"
+  },
+  "dependencies": {
+    "open": "0.0.5"
+  },
+  "engines": {
+    "node": "*"
+  }
+}

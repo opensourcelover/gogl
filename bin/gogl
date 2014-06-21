@@ -1,0 +1,12 @@
+#!/usr/bin/env node
+
+"use strict";
+
+var input = process.argv.slice(2);
+
+if (input.length > 0) {
+    console.log('Openning browser... please wait.');
+    module.exports = require('../lib/gogl');
+} else {
+    console.log('You need to specify a term at least.');
+}
