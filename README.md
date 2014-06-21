@@ -11,4 +11,4 @@ Search With Google
 	gogl someting
 
 
-> If this tool can not used normally, Please open an issue to let me know!
+> If this tool can not used normally, Please open an [issue](https://github.com/opensourcelover/gogl/issues) to let me know!
