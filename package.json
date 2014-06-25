@@ -15,10 +15,18 @@
   "bin": {
     "gogl": "./bin/gogl"
   },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "dependencies": {
+    "colors": "^0.6.2",
+    "commander": "^2.2.0",
     "open": "0.0.5"
   },
   "engines": {
     "node": "*"
+  },
+  "bugs": {
+    "url": "https://github.com/opensourcelover/gogl/issues"
   }
 }

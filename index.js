@@ -6,4 +6,4 @@
  * Author: Light <light-li@hotmail.com>
  */
 
-require('./lib/gogl');
+module.exports = require('./lib/gogl');

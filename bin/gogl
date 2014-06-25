@@ -2,11 +2,68 @@
 
 "use strict";
 
-var input = process.argv.slice(2);
+var program = require('commander');
+var path = require('path');
+var colors = require('colors');
 
-if (input.length > 0) {
-    console.log('Openning browser... please wait.');
-    module.exports = require('../lib/gogl');
-} else {
-    console.log('You need to specify a term at least.');
+var searcher = require('../index');
+
+
+program
+  .version(require(path.join(__dirname, '..', 'package.json')).version)
+  .usage('<command> [options]')
+  .option('-s, --so [value]', 'search with www.so.com');
+  //.option('-n, --host [value]', 'Set request hostname, defaults to 127.0.0.1', '127.0.0.1')
+  //.option('-p, --port <n>', 'The port your service is listening to, defaults to 3000', 3000)
+  //.option('-r, --route <n>', 'The route path, defaults to /', '')
+  //.option('-d, --destination [value]', 'The request destination url, will override "host", "port" and "route"')
+  //.option('-s, --sp [value]', 'The SP ID, defaults to webot', 'webot')
+  //.option('-u, --user [value]', 'The User ID defaults to client', 'client');
+
+
+// program
+//    .command('so')
+//    .description('search use www.so.com')
+//    .action(function(){
+//     	searcher['so']();
+//    });
+
+// program
+//    .command('bd')
+//    .description('search use www.baidu.com')
+//    .action(function(){
+//      searcher['baidu']();
+//    });
+
+program.parse(process.argv);
+
+program.on('--help', function(){
+	console.log('gogl ~ ' + require('../package.json').version.green);
+	console.log('Search with google tools in command line'.grey);
+	console.log('  Examples:'.yellow);
+	console.log('  $ '.cyan + 'gogl word');
+	console.log('  $ '.cyan + 'gogl world peace');
+	console.log('');
+});
+
+
+
+program.on('-s', searcher['so']);
+
+
+var cmd = process.argv[0];
+
+// console.log(process.argv);
+
+
+
+if (!process.argv[2]) {
+  program.emit('--help');
+  return;
 }
+
+
+console.log('Openning browser... please wait.'.green);
+
+
+searcher['google']();
