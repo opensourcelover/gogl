@@ -6,55 +6,52 @@ var program = require('commander');
 var path = require('path');
 var colors = require('colors');
 
-var searcher = require('../index');
+var gogl = require('../index');
+
+var  searchEngine = 'google', //default is google
+     terms = '';
+
 
 
 program
   .version(require(path.join(__dirname, '..', 'package.json')).version)
   .usage('<command> [options]')
-  .option('-s, --so [value]', 'search with www.so.com');
-  //.option('-n, --host [value]', 'Set request hostname, defaults to 127.0.0.1', '127.0.0.1')
-  //.option('-p, --port <n>', 'The port your service is listening to, defaults to 3000', 3000)
-  //.option('-r, --route <n>', 'The route path, defaults to /', '')
-  //.option('-d, --destination [value]', 'The request destination url, will override "host", "port" and "route"')
-  //.option('-s, --sp [value]', 'The SP ID, defaults to webot', 'webot')
-  //.option('-u, --user [value]', 'The User ID defaults to client', 'client');
+  .option('-e, --engine [value]', 'Search Engines: so, baidu, google');
 
 
-// program
-//    .command('so')
-//    .description('search use www.so.com')
-//    .action(function(){
-//     	searcher['so']();
-//    });
+//CLI directly
 
-// program
-//    .command('bd')
-//    .description('search use www.baidu.com')
-//    .action(function(){
-//      searcher['baidu']();
-//    });
+program
+  .command('so')
+  .description('Search With www.so.com')
+  .action(function(){
+    searchEngine = 'so';
+    terms = program.args.slice(0, -1);
+  });
 
+program
+  .command('bd')
+  .description('Search With www.baidu.com')
+  .action(function(){
+    searchEngine = 'baidu';
+    terms = program.args.slice(0, -1);
+  });
+
+//parse argvs with commander
 program.parse(process.argv);
 
 program.on('--help', function(){
+  console.log('');
 	console.log('gogl ~ ' + require('../package.json').version.green);
 	console.log('Search with google tools in command line'.grey);
 	console.log('  Examples:'.yellow);
 	console.log('  $ '.cyan + 'gogl word');
 	console.log('  $ '.cyan + 'gogl world peace');
+  console.log('  $ '.cyan + 'gogl -e [so, baidu, google] worlds');
+  console.log('  $ '.cyan + 'gogl so worlds');
+  console.log('  $ '.cyan + 'gogl bd worlds');
 	console.log('');
 });
-
-
-
-program.on('-s', searcher['so']);
-
-
-var cmd = process.argv[0];
-
-// console.log(process.argv);
-
 
 
 if (!process.argv[2]) {
@@ -62,8 +59,22 @@ if (!process.argv[2]) {
   return;
 }
 
+if(program.engine) {
+  searchEngine = program.engine;
+  terms = program.args;
+}
 
-console.log('Openning browser... please wait.'.green);
+console.log(gogl);
 
+terms || (terms = process.argv.slice(2));
 
-searcher['google']();
+if(gogl[searchEngine]) {
+  console.log('');
+  console.log(' Search With '.yellow + searchEngine.blue);
+  gogl[searchEngine](terms.join('+'));
+
+} else {
+
+  console.log('Unkonw Search Engine.'.red + searchEngine);
+  program.emit('--help');
+}
