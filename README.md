@@ -1,4 +1,4 @@
-Search With Google
+Search Begin With CLI
 ==============
 
 ## Install
@@ -8,13 +8,27 @@ Search With Google
 
 ## Usage
 
-	gogl someting
+* Search With [Google](http://www.google.com)
 
-	gogl so some words
+```
+gogl someting
+```
+* Search With [So](http://www.so.com)
 
-	gogl bd some words
+```
+gogl so some words
+```
 
-	gogl -e [so, baidu, google] some words
+* Search With [Baidu](http://www.baidu.com)
 
+```
+gogl bd some words
+```
 
-> If this tool can not used normally, Please open an [issue](https://github.com/opensourcelover/gogl/issues) to let me know!
+* Also u can do like this:
+
+```
+gogl -e [so, baidu, google] some words
+```
+
+> __(If this tool can not used normally, Please open an [issue](https://github.com/opensourcelover/gogl/issues) to let me know!)__
