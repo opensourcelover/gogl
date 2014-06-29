@@ -64,8 +64,6 @@ if(program.engine) {
   terms = program.args;
 }
 
-console.log(gogl);
-
 terms || (terms = process.argv.slice(2));
 
 if(gogl[searchEngine]) {
