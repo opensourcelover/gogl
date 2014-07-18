@@ -4,7 +4,7 @@
 
 var program = require('commander');
 var path = require('path');
-var colors = require('colors');
+var chalk = require('chalk');
 
 var gogl = require('../index');
 
@@ -42,14 +42,14 @@ program.parse(process.argv);
 
 program.on('--help', function(){
   console.log('');
-	console.log('gogl ~ ' + require('../package.json').version.green);
-	console.log('Search with google tools in command line'.grey);
-	console.log('  Examples:'.yellow);
-	console.log('  $ '.cyan + 'gogl word');
-	console.log('  $ '.cyan + 'gogl world peace');
-  console.log('  $ '.cyan + 'gogl -e [so, baidu, google] worlds');
-  console.log('  $ '.cyan + 'gogl so worlds');
-  console.log('  $ '.cyan + 'gogl bd worlds');
+	console.log('gogl ~ ' + chalk.green(require('../package.json').version));
+	console.log(chalk.grey('Search with google tools in command line'));
+	console.log(chalk.yellow('  Examples:'));
+	console.log(chalk.cyan('  $ ') + 'gogl word');
+	console.log(chalk.cyan('  $ ') + 'gogl world peace');
+  console.log(chalk.cyan('  $ ') + 'gogl -e [so, baidu, google] worlds');
+  console.log(chalk.cyan('  $ ') + 'gogl so worlds');
+  console.log(chalk.cyan('  $ ') + 'gogl bd worlds');
 	console.log('');
 });
 
@@ -68,11 +68,11 @@ terms || (terms = process.argv.slice(2));
 
 if(gogl[searchEngine]) {
   console.log('');
-  console.log(' Search With '.yellow + searchEngine.blue);
+  console.log(chalk.yellow(' Search With ') + chalk.blue(searchEngine));
   gogl[searchEngine](terms.join('+'));
 
 } else {
-
-  console.log('Unkonw Search Engine.'.red + searchEngine);
+  console.log('');
+  console.log(chalk.bgRed.white('Unkonw Search Engine ' + searchEngine));
   program.emit('--help');
 }
